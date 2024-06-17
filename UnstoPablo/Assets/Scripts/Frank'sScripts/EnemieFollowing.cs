@@ -4,11 +4,14 @@ public class EnemyFollowing : MonoBehaviour
 {
     public string targetTag = "Player"; // Tag obiektu, za ktÛrym ma podπøaÊ
     public float speed = 5f; // PrÍdkoúÊ poruszania siÍ
+    public bool doesDistanceMatter;
     public float stoppingDistance = 1f; // Dystans, na jakim obiekt siÍ zatrzymuje
+    public bool doesTouchingMatter;
     public bool isFollowing;
     public bool isReachingPermanent;
 
     private bool didReachedTarget;
+    private bool didTouched;
 
     public enum ReactionMode { Stop, AutoDestruction }
     public ReactionMode reactionMode = ReactionMode.Stop; // Tryb reakcji po osiπgniÍciu stoppingDistance
@@ -17,6 +20,10 @@ public class EnemyFollowing : MonoBehaviour
     private Rigidbody rb; // Rigidbody tego obiektu
     private Vector3 moveDirection; // Kierunek poruszania siÍ
 
+    public void Awake()
+    {
+        didTouched = false;
+    }
     void Start()
     {
         FindTarget(); // Znajdü obiekt z okreúlonym tagiem
@@ -42,8 +49,6 @@ public class EnemyFollowing : MonoBehaviour
             if (rb != null)
             {
                 float distance = Vector3.Distance(target.position, transform.position);
-                if (distance > stoppingDistance)
-                {
                     // Porusz obiekt w obliczonym kierunku
                     rb.MovePosition(transform.position + moveDirection * speed * Time.fixedDeltaTime);
 
@@ -53,8 +58,7 @@ public class EnemyFollowing : MonoBehaviour
                         FindTarget(); // Znajdü obiekt z okreúlonym tagiem
                         CalculateMoveDirection();
                     }
-                }
-                else
+                else if ((distance <= stoppingDistance && doesDistanceMatter) || (didTouched && doesTouchingMatter))
                 {
                     HandleReaction();
                 }
@@ -128,6 +132,21 @@ public class EnemyFollowing : MonoBehaviour
         else
         {
             Debug.LogError("Nie znaleziono obiektÛw z tagiem: " + targetTag);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag(targetTag))
+        {
+            didTouched = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag(targetTag))
+        {
+            didTouched = false;
         }
     }
 }
