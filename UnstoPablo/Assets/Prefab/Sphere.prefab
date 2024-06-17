@@ -174,9 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Npc
-  speed: 5
+  speed: 10
   stoppingDistance: 1
   isFollowing: 1
+  isReachingPermanent: 0
   reactionMode: 1
 --- !u!54 &2021882463218215674
 Rigidbody:

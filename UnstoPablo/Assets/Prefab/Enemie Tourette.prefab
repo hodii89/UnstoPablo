@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9020056694233980257}
   - component: {fileID: 5305562257614028369}
   m_Layer: 0
-  m_Name: Enemie
+  m_Name: Enemie Tourette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
