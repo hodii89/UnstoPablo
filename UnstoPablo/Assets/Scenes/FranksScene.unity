@@ -135,11 +135,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemie Follower
       objectReference: {fileID: 0}
-    - target: {fileID: 3646564904832122684, guid: 76058de532eda2341a84d617bc5eee2b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5266860046857623028, guid: 76058de532eda2341a84d617bc5eee2b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -189,11 +184,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5995376405134273400, guid: 76058de532eda2341a84d617bc5eee2b,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
