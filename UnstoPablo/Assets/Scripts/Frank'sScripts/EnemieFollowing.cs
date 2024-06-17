@@ -15,19 +15,12 @@ public class EnemyFollowing : MonoBehaviour
 
     private Transform target; // Transform celu
     private Rigidbody rb; // Rigidbody tego obiektu
+    private Vector3 moveDirection; // Kierunek poruszania siÍ
 
     void Start()
     {
-        // Znajdü obiekt z okreúlonym tagiem
-        GameObject targetObject = GameObject.FindGameObjectWithTag(targetTag);
-        if (targetObject != null)
-        {
-            target = targetObject.transform;
-        }
-        else
-        {
-            Debug.LogError("Nie znaleziono obiektu z tagiem: " + targetTag);
-        }
+        FindTarget(); // Znajdü obiekt z okreúlonym tagiem
+        CalculateMoveDirection();
 
         // Pobierz komponent Rigidbody
         rb = GetComponent<Rigidbody>();
@@ -39,28 +32,55 @@ public class EnemyFollowing : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isFollowing && target != null)
+        if (isFollowing)
         {
             // Oblicz kierunek do celu na bieøπco
-            Vector3 direction = (target.position - transform.position).normalized;
-            transform.forward = direction; // Koryguj kierunek obiektu
+            CalculateMoveDirection();
         }
+        if (target != null)
+        {
+            if (rb != null)
+            {
+                float distance = Vector3.Distance(target.position, transform.position);
+                if (distance > stoppingDistance)
+                {
+                    // Porusz obiekt w obliczonym kierunku
+                    rb.MovePosition(transform.position + moveDirection * speed * Time.fixedDeltaTime);
 
-        if (target != null && rb != null)
+                    if (isReachingPermanent == false && didReachedTarget)
+                    {
+                        didReachedTarget = false;
+                        FindTarget(); // Znajdü obiekt z okreúlonym tagiem
+                        CalculateMoveDirection();
+                    }
+                }
+                else
+                {
+                    HandleReaction();
+                }
+            }
+        }
+        else
+        {
+            if (!isFollowing)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+    void CalculateMoveDirection()
+    {
+        if (target != null)
         {
             // Oblicz kierunek do celu
-            Vector3 direction = (target.position - transform.position).normalized;
-
-            // Sprawdü, czy odleg≥oúÊ do celu jest wiÍksza niø dystans zatrzymania
-            float distance = Vector3.Distance(target.position, transform.position);
-            if (distance > stoppingDistance)
+            moveDirection = (target.position - transform.position).normalized;
+        }
+        else
+        {
+            if (isFollowing)
             {
-                // Porusz obiekt w kierunku celu
-                rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
-            }
-            else
-            {
-                HandleReaction();
+                FindTarget(); // Znajdü obiekt z okreúlonym tagiem
+                CalculateMoveDirection();
             }
         }
     }
@@ -68,8 +88,6 @@ public class EnemyFollowing : MonoBehaviour
     void HandleReaction()
     {
         didReachedTarget = true;
-
-
 
         switch (reactionMode)
         {
@@ -81,6 +99,35 @@ public class EnemyFollowing : MonoBehaviour
                 // Zniszcz obiekt
                 Destroy(gameObject);
                 break;
+        }
+    }
+
+    void FindTarget()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTag);
+        if (targets.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+            Transform closestTarget = null;
+
+            foreach (GameObject obj in targets)
+            {
+                float distance = Vector3.Distance(obj.transform.position, transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = obj.transform;
+                }
+            }
+
+            if (closestTarget != null)
+            {
+                target = closestTarget;
+            }
+        }
+        else
+        {
+            Debug.LogError("Nie znaleziono obiektÛw z tagiem: " + targetTag);
         }
     }
 }
