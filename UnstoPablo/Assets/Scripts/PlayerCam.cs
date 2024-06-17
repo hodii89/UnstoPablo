@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerCam : MonoBehaviour
 {
     public float sensX;
     public float sensY;
+    public GameObject cam;
 
     public Transform orientation;
 
@@ -30,8 +32,11 @@ public class PlayerCam : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);    
-        
 
-
+    }
+    public float DoFov(float endValue)
+    {
+        cam.GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
+        return endValue;
     }
 }

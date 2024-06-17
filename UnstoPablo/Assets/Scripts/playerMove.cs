@@ -5,13 +5,17 @@ using UnityEngine;
 public class playerMove : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
+    private float moveSpeed;
+    public float ogMoveSpeed;
     public float sprintSpeed;
     public float slowSpeed;
     public float Stamina = 100;
     public float StamDrainRate;
+    public bool dashing;
 
     public float groundDrag;
+    public float airDrag;
+    public float dashDrag;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -35,41 +39,51 @@ public class playerMove : MonoBehaviour
         SpeedControl();
         if (grounded)
             rb.drag = groundDrag;
+        else if(dashing)
+        {
+            rb.drag = dashDrag;
+        }
         else
-            rb.drag = 0f;
+            rb.drag = airDrag;
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
+        if(grounded)
         {
-            if (Stamina > 0f)
-                Stamina -= Time.deltaTime * StamDrainRate;
-            if (Stamina > 0f)
-             Sprint();
-            else
-             MovePlayer();
-           
-        }
-        else if(Input.GetKey(KeyCode.S))
-        {
-                SlowDown();
-        }
-        else
-        {
-         
-              
-            if (Stamina < 100f)
+            if (Input.GetKey(KeyCode.W))
             {
-                Stamina += Time.deltaTime * StamDrainRate;
-            }              
-            MovePlayer();
+                if (Stamina > 0f)
+                    Stamina -= Time.deltaTime * StamDrainRate;
+                if (Stamina > 0f)
+                    Sprint();
+                else
+                    MovePlayer();
+
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+
+                SlowDown();
+            }
+            else
+            {
+
+
+                if (Stamina < 100f)
+                {
+                    Stamina += Time.deltaTime * StamDrainRate;
+                }
+
+                MovePlayer();
+
+            }
         }
-           
+
     }
 
-   private void MovePlayer()
+    private void MovePlayer()
     {
-
+        moveSpeed = ogMoveSpeed;
         moveDirection = orientation.forward;
         rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Force);
     }
@@ -78,7 +92,7 @@ public class playerMove : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if(flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
@@ -86,12 +100,15 @@ public class playerMove : MonoBehaviour
     }
     private void Sprint()
     {
+        moveSpeed = sprintSpeed;
         moveDirection = orientation.forward;
-        rb.AddForce(moveDirection.normalized * sprintSpeed, ForceMode.Force);
+        rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Force);
     }
     private void SlowDown()
     {
+        moveSpeed = slowSpeed;
         moveDirection = orientation.forward;
-        rb.AddForce(moveDirection.normalized * slowSpeed, ForceMode.Force);
+        rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Force);
     }
 }
+
