@@ -7,6 +7,7 @@ public class playerMove : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float sprintSpeed;
+    public float slowSpeed;
     public float Stamina = 100;
     public float StamDrainRate;
 
@@ -39,7 +40,7 @@ public class playerMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.W))
         {
             if (Stamina > 0f)
                 Stamina -= Time.deltaTime * StamDrainRate;
@@ -49,8 +50,14 @@ public class playerMove : MonoBehaviour
              MovePlayer();
            
         }
+        else if(Input.GetKey(KeyCode.S))
+        {
+                SlowDown();
+        }
         else
         {
+         
+              
             if (Stamina < 100f)
             {
                 Stamina += Time.deltaTime * StamDrainRate;
@@ -81,5 +88,10 @@ public class playerMove : MonoBehaviour
     {
         moveDirection = orientation.forward;
         rb.AddForce(moveDirection.normalized * sprintSpeed, ForceMode.Force);
+    }
+    private void SlowDown()
+    {
+        moveDirection = orientation.forward;
+        rb.AddForce(moveDirection.normalized * slowSpeed, ForceMode.Force);
     }
 }
