@@ -200,6 +200,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victimTag: Npc
-  cyclicDamage: 0
-  cyclicCooldown: 0
-  didTouch: 0
+  cyclicDamage: 10
+  cyclicCooldown: 1
