@@ -27,11 +27,24 @@ public class playerMove : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    private MonoBehaviour activationScript; // Reference to the script to enable/disable
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        // Find the script with the specified name in the GameObject's components
+        activationScript = GetComponentInChildren<UniversalAttack>();
+
+        if (activationScript != null)
+        {
+            // Set initial state based on the 'dashing' variable
+            activationScript.enabled = dashing;
+        }
     }
+
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsground);
@@ -39,12 +52,18 @@ public class playerMove : MonoBehaviour
         SpeedControl();
         if (grounded)
             rb.drag = groundDrag;
-        else if(dashing)
+        else if (dashing)
         {
             rb.drag = dashDrag;
+            if (activationScript != null)
+                activationScript.enabled = true; // Enable script when dashing
         }
         else
+        {
             rb.drag = airDrag;
+            if (activationScript != null)
+                activationScript.enabled = false; // Disable script when not dashing
+        }
     }
     private void FixedUpdate()
     {

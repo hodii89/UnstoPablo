@@ -8,11 +8,11 @@ public class UniversalAttack : MonoBehaviour
     public float cyclicCooldown;
     private bool didTouch;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.CompareTag(victimTag) && didTouch == false)
+        if (other.CompareTag(victimTag) && didTouch == false)
         {
-            HealthUniversal enemyHealth = collision.collider.GetComponent<HealthUniversal>();
+            HealthUniversal enemyHealth = other.GetComponent<HealthUniversal>();
 
             if (enemyHealth != null)
             {
@@ -22,9 +22,9 @@ public class UniversalAttack : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.collider.CompareTag(victimTag))
+        if (other.CompareTag(victimTag))
         {
             didTouch = false;
         }
@@ -37,5 +37,9 @@ public class UniversalAttack : MonoBehaviour
             enemyHealth.SubtractHealth(cyclicDamage);
             yield return new WaitForSeconds(cyclicCooldown);
         }
+    }
+    private void OnEnable()
+    {
+        didTouch = true;
     }
 }
