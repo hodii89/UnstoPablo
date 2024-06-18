@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ScoreCountingScript : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ScoreCountingScript : MonoBehaviour
     public GameObject npcIconPrefab; // Prefab ikony NPC
     public Transform iconContainer; // Kontener dla ikon NPC
     public Vector2 iconOffset; // Offset miêdzy ikonami NPC
-
+    public GameObject FinalScore;
     private void Start()
     {
         NpcsStart = GameObject.FindGameObjectsWithTag("Npc").Length;
@@ -30,7 +31,9 @@ public class ScoreCountingScript : MonoBehaviour
 
         if (NpcsLeft == 0)
         {
+            
             DeactivateAllScripts();
+            FinalScore.SetActive(true);
         }
 
         // Aktualizacja tekstu w TextMeshPro
@@ -43,7 +46,10 @@ public class ScoreCountingScript : MonoBehaviour
 
         foreach (MonoBehaviour script in allScripts)
         {
-            script.enabled = false;
+            if(script != this || script != FinalScore.GetComponent<Image>())
+            {
+                script.enabled = false;
+            }  
         }
     }
 
