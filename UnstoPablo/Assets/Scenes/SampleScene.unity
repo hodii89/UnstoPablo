@@ -22790,6 +22790,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5371145064302870219, guid: ccb4c0b096bbacc498d118cddd95118b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: df9e1ff3a2e905d468409d9ae05c5fa6, type: 2}
     - target: {fileID: 7446470818775339797, guid: ccb4c0b096bbacc498d118cddd95118b,
         type: 3}
       propertyPath: m_LocalPosition.x
