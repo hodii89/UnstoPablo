@@ -30,8 +30,16 @@ public class Dashing : MonoBehaviour
     [Header("Input")]
     public KeyCode dashKey = KeyCode.E;
 
+    private AudioSource audioSource;
+
+    // Zmienna do przechowywania klipu dŸwiêkowego œmierci
+    public AudioClip dashingSound;
+
     private void Start()
     {
+        // Przypisz komponent AudioSource znajduj¹cy siê na tym samym obiekcie
+        audioSource = GetComponent<AudioSource>();
+
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<playerMove>();
     }
@@ -47,6 +55,13 @@ public class Dashing : MonoBehaviour
 
     private void Dash()
     {
+        // SprawdŸ, czy mamy komponent AudioSource na tym obiekcie
+        if (audioSource != null && dashingSound != null)
+        {
+            // Odtwórz dŸwiêk œmierci przez audioSource
+            audioSource.PlayOneShot(dashingSound);
+        }
+
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
 
