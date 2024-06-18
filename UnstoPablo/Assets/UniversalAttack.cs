@@ -13,6 +13,7 @@ public class UniversalAttack : MonoBehaviour
         if (collision.collider.CompareTag(victimTag) && didTouch == false)
         {
             HealthUniversal enemyHealth = collision.collider.GetComponent<HealthUniversal>();
+            Debug.Log("enemy hit");
 
             if (enemyHealth != null)
             {

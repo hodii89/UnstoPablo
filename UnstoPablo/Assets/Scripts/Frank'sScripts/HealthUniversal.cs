@@ -21,7 +21,7 @@ public class HealthUniversal : MonoBehaviour
         health -= amount;
         // Upewnij siê, ¿e zdrowie nie spadnie poni¿ej 0
         health = Mathf.Max(health, 0);
-        Debug.Log("Zdrowie odjête: " + amount + ". Aktualne zdrowie: " + health);
+        Debug.Log("Zdrowie odjête: " + amount + ". Aktualne zdrowie: " + health + "dla: " + gameObject.name);
     }
 
     public void Update()
