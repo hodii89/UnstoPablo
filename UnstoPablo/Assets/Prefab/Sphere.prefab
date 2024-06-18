@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Npc
-  speed: 10
+  speed: 15
   doesDistanceMatter: 0
   stoppingDistance: 1
   doesTouchingMatter: 1
