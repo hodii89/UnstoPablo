@@ -110,9 +110,10 @@ GameObject:
   - component: {fileID: 2021882463218215674}
   - component: {fileID: -1108269788452685627}
   - component: {fileID: -5606985146820476666}
+  - component: {fileID: -2296219671032193900}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,3 +217,17 @@ MonoBehaviour:
   isFollowing: 0
   isReachingPermanent: 0
   reactionMode: 1
+--- !u!114 &-2296219671032193900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976445657496942548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11807d2dac32f644b8fbba1d3cf71a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  deathPoints: 1
