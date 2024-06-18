@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   deathPoints: 10
+  deathSound: {fileID: 8300000, guid: 020a8176fc31b564aa54e98b58f91ad7, type: 3}
 --- !u!114 &1993883994097503805
 MonoBehaviour:
   m_ObjectHideFlags: 0

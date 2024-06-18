@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthUniversal : MonoBehaviour
@@ -8,11 +7,18 @@ public class HealthUniversal : MonoBehaviour
     public int deathPoints;
 
     private ScoreCountingScript scoreCountingScript;
+    private AudioSource audioSource;
+
+    // Zmienna do przechowywania klipu dŸwiêkowego œmierci
+    public AudioClip deathSound;
 
     private void Start()
     {
         // Find the ScoreCountingScript in the scene
         scoreCountingScript = FindObjectOfType<ScoreCountingScript>();
+
+        // Przypisz komponent AudioSource znajduj¹cy siê na tym samym obiekcie
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Funkcja do dodawania zdrowia
@@ -30,20 +36,41 @@ public class HealthUniversal : MonoBehaviour
         health -= amount;
         // Upewnij siê, ¿e zdrowie nie spadnie poni¿ej 0
         health = Mathf.Max(health, 0);
-        Debug.Log("Zdrowie odjête: " + amount + ". Aktualne zdrowie: " + health + "dla: " + gameObject.name);
-    }
+        Debug.Log("Zdrowie odjête: " + amount + ". Aktualne zdrowie: " + health + " dla: " + gameObject.name);
 
-    public void Update()
-    {
+        // SprawdŸ, czy zdrowie spad³o poni¿ej 0 i wywo³aj Die()
         if (health <= 0)
         {
             Die();
         }
     }
 
-    public void Die()
+    private void Die()
     {
-            scoreCountingScript.points += deathPoints;
-            Destroy(gameObject); // Zniszczenie obiektu
+        // SprawdŸ, czy mamy komponent AudioSource na tym obiekcie
+        if (deathSound != null)
+        {
+            // Spawnowanie nowego obiektu na pozycji obecnego obiektu
+            GameObject soundObject = GameObject.Instantiate(new GameObject(), transform.position, Quaternion.identity);
+
+            // Dodawanie komponentu AudioSource do nowo stworzonego obiektu
+            AudioSource soundSource = soundObject.AddComponent<AudioSource>();
+
+            // Ustawianie clipu dŸwiêku œmierci na komponencie AudioSource
+            soundSource.clip = deathSound;
+
+            // Odtwarzanie dŸwiêku œmierci
+            soundSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Brak komponentu AudioSource lub klipu dŸwiêkowego œmierci na obiekcie " + gameObject.name);
+        }
+
+        // Dodaj punkty do licznika
+        scoreCountingScript.points += deathPoints;
+
+        // Zniszczenie obiektu HealthUniversal
+        Destroy(gameObject);
     }
 }
