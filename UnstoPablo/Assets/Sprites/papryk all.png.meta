@@ -95,7 +95,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: papryk all_2
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 2
+        width: 171
+        height: 322
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7ffbb887b65114bb433d99b825983b
+      internalID: -738216227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: papryk all_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 191
+        height: 318
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c8c4a5cd1021d4aa21f9e2d14873e1
+      internalID: 223377794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: papryk all_3
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 0
+        width: 191
+        height: 322
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5569d4e62d523f448573b22194e3670
+      internalID: -2081713147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: papryk all_4
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 0
+        width: 10
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18eb9381538567846b9323cc70198040
+      internalID: 1105155655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: papryk all_
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 0
+        width: 169
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73af83966520fc24fa6a9212ae911d45
+      internalID: 49278974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +211,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      papryk all_: 49278974
+      papryk all_1: 223377794
+      papryk all_2: -738216227
+      papryk all_3: -2081713147
+      papryk all_4: 1105155655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
