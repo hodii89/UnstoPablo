@@ -1,37 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;  // Dodaj referencjê do TextMeshPro
 
 public class ScoreCountingScript : MonoBehaviour
 {
     public int NpcsStart;
     public int NpcsLeft;
-
     public int points;
+
+    public TextMeshProUGUI pointsText;  // Referencja do komponentu TextMeshPro
 
     private void Start()
     {
         NpcsStart = GameObject.FindGameObjectsWithTag("Npc").Length;
         points = 0;
+
+        // Przyk³ad przypisania w inspektorze: pointsText = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Find all GameObjects with the tag "Npc"
         NpcsLeft = GameObject.FindGameObjectsWithTag("Npc").Length;
 
         if (NpcsLeft == 0)
         {
             DeactivateAllScripts();
         }
+
+        // Aktualizacja tekstu w TextMeshPro
+        pointsText.text = "Points: " + points.ToString();
     }
 
     private void DeactivateAllScripts()
     {
-        // Get all MonoBehaviour scripts in the scene
         MonoBehaviour[] allScripts = FindObjectsOfType<MonoBehaviour>();
 
-        // Loop through each script and disable it
         foreach (MonoBehaviour script in allScripts)
         {
             script.enabled = false;
