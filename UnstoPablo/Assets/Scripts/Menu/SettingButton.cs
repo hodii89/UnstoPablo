@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SettingButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private AudioSource audioSource;
+    public AudioClip ClickingSound;
+
+    private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
