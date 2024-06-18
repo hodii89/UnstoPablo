@@ -4,12 +4,7 @@ using UnityEngine;
 public class ScoreCountingScript : MonoBehaviour
 {
     public int NpcsLeft;
-    public int NpcsStart;
 
-    public void Start()
-    {
-        NpcsStart = GameObject.FindGameObjectsWithTag("Npc").Length;
-    }
     // Update is called once per frame
     void Update()
     {

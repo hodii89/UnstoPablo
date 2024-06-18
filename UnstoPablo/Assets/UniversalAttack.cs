@@ -6,7 +6,7 @@ public class UniversalAttack : MonoBehaviour
     public string victimTag;
     public int cyclicDamage;
     public float cyclicCooldown;
-    [SerializeField] private bool didTouch;
+    private bool didTouch;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,7 +16,6 @@ public class UniversalAttack : MonoBehaviour
 
             if (enemyHealth != null)
             {
-                Debug.Log(collision.collider.name);
                 didTouch = true;
                 StartCoroutine(CyclicDamage(enemyHealth));
             }
