@@ -21,12 +21,27 @@ public class EnemyFollowingBullet : MonoBehaviour
     private Rigidbody rb; // Rigidbody tego obiektu
     private Vector3 moveDirection; // Kierunek poruszania siê
 
+    private AudioSource audioSource;
+
+    // Zmienna do przechowywania klipu dŸwiêkowego œmierci
+    public AudioClip shootingSound;
+
     public void Awake()
     {
         didTouched = false;
     }
     void Start()
     {
+        // Przypisz komponent AudioSource znajduj¹cy siê na tym samym obiekcie
+        audioSource = GetComponent<AudioSource>();
+
+        // SprawdŸ, czy mamy komponent AudioSource na tym obiekcie
+        if (audioSource != null && shootingSound != null)
+        {
+            // Odtwórz dŸwiêk œmierci przez audioSource
+            audioSource.PlayOneShot(shootingSound);
+        }
+
         FindTarget(); // ZnajdŸ obiekt z okreœlonym tagiem
         CalculateMoveDirection();
 
