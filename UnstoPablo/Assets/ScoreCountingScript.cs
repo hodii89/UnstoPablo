@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;  // Dodaj referencjê do TextMeshPro
+using UnityEngine.UI;
+using TMPro;
 
 public class ScoreCountingScript : MonoBehaviour
 {
@@ -8,12 +8,16 @@ public class ScoreCountingScript : MonoBehaviour
     public int NpcsLeft;
     public int points;
 
-    public TextMeshProUGUI pointsText;  // Referencja do komponentu TextMeshPro
+    public TextMeshProUGUI pointsText; // Referencja do komponentu TextMeshPro
+    public GameObject npcIconPrefab; // Prefab ikony NPC
+    public Transform iconContainer; // Kontener dla ikon NPC
+    public Vector2 iconOffset; // Offset miêdzy ikonami NPC
 
     private void Start()
     {
         NpcsStart = GameObject.FindGameObjectsWithTag("Npc").Length;
         points = 0;
+        UpdateNpcIcons();
 
         // Przyk³ad przypisania w inspektorze: pointsText = GetComponent<TextMeshProUGUI>();
     }
@@ -22,6 +26,7 @@ public class ScoreCountingScript : MonoBehaviour
     void Update()
     {
         NpcsLeft = GameObject.FindGameObjectsWithTag("Npc").Length;
+        UpdateNpcIcons();
 
         if (NpcsLeft == 0)
         {
@@ -39,6 +44,22 @@ public class ScoreCountingScript : MonoBehaviour
         foreach (MonoBehaviour script in allScripts)
         {
             script.enabled = false;
+        }
+    }
+
+    private void UpdateNpcIcons()
+    {
+        // Usuniêcie starych ikon
+        foreach (Transform child in iconContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Dodanie nowych ikon
+        for (int i = 0; i < NpcsLeft; i++)
+        {
+            GameObject icon = Instantiate(npcIconPrefab, iconContainer);
+            icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * iconOffset.x, 0);
         }
     }
 }
