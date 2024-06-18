@@ -196,7 +196,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 34.25
+  walkPointRange: 5.4
 --- !u!114 &-1855923275491112423
 MonoBehaviour:
   m_ObjectHideFlags: 0

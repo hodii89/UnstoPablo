@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyFollowing : MonoBehaviour
+public class EnemyFollowingBullet : MonoBehaviour
 {
     public string targetTag = "Player"; // Tag obiektu, za którym ma pod¹¿aæ
     public float speed = 5f; // Prêdkoœæ poruszania siê
@@ -10,7 +10,6 @@ public class EnemyFollowing : MonoBehaviour
     public bool doesTouchingMatter;
     public bool isFollowing;
     public bool isReachingPermanent;
-    public NavMeshAgent agent;
 
     private bool didReachedTarget;
     private bool didTouched;
@@ -51,15 +50,14 @@ public class EnemyFollowing : MonoBehaviour
             if (rb != null)
             {
                 float distance = Vector3.Distance(target.position, transform.position);
-                    // Porusz obiekt w obliczonym kierunku
-                    //rb.MovePosition(transform.position + moveDirection * speed * Time.fixedDeltaTime);
-                    agent.SetDestination(target.position);
-                    if (isReachingPermanent == false && didReachedTarget)
-                    {
-                        didReachedTarget = false;
-                        FindTarget(); // ZnajdŸ obiekt z okreœlonym tagiem
-                        CalculateMoveDirection();
-                    }
+                // Porusz obiekt w obliczonym kierunku
+                rb.MovePosition(transform.position + moveDirection * speed * Time.fixedDeltaTime);
+                if (isReachingPermanent == false && didReachedTarget)
+                {
+                    didReachedTarget = false;
+                    FindTarget(); // ZnajdŸ obiekt z okreœlonym tagiem
+                    CalculateMoveDirection();
+                }
                 else if ((distance <= stoppingDistance && doesDistanceMatter) || (didTouched && doesTouchingMatter))
                 {
                     HandleReaction();
@@ -129,13 +127,6 @@ public class EnemyFollowing : MonoBehaviour
             if (closestTarget != null)
             {
                 target = closestTarget;
-            }
-
-            // Pobierz komponent Rigidbody
-            rb = GetComponent<Rigidbody>();
-            if (rb == null)
-            {
-                Debug.LogError("Brak komponentu Rigidbody na obiekcie.");
             }
         }
         else

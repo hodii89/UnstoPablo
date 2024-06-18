@@ -107,9 +107,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6788250087352592900}
   - component: {fileID: 2343962200339864626}
-  - component: {fileID: 1115061904303915323}
   - component: {fileID: 2021882463218215674}
   - component: {fileID: -1108269788452685627}
+  - component: {fileID: -5606985146820476666}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -154,26 +154,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1115061904303915323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976445657496942548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c64b5fea1d40f340b2e0c02003c2068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTag: Npc
-  speed: 15
-  doesDistanceMatter: 0
-  stoppingDistance: 1
-  doesTouchingMatter: 1
-  isFollowing: 0
-  isReachingPermanent: 0
-  reactionMode: 1
 --- !u!54 &2021882463218215674
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,3 +196,23 @@ MonoBehaviour:
   victimTag: Npc
   cyclicDamage: 10
   cyclicCooldown: 1
+--- !u!114 &-5606985146820476666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976445657496942548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89037a5c955afa6458c04092a89c092a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Npc
+  speed: 10
+  doesDistanceMatter: 0
+  stoppingDistance: 1
+  doesTouchingMatter: 1
+  isFollowing: 0
+  isReachingPermanent: 0
+  reactionMode: 1
