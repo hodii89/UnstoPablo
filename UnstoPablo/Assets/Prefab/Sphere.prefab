@@ -217,6 +217,7 @@ MonoBehaviour:
   isFollowing: 0
   isReachingPermanent: 0
   reactionMode: 1
+  shootingSound: {fileID: 0}
 --- !u!114 &-2296219671032193900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,3 +232,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   deathPoints: 1
+  deathSound: {fileID: 8300000, guid: 2f79178a1859c49458bb9f58ade0427f, type: 3}
