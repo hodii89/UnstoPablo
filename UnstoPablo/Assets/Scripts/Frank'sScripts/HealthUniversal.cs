@@ -5,6 +5,15 @@ public class HealthUniversal : MonoBehaviour
 {
     // Zmienna przechowuj¹ca zdrowie
     public int health = 100;
+    public int deathPoints;
+
+    private ScoreCountingScript scoreCountingScript;
+
+    private void Start()
+    {
+        // Find the ScoreCountingScript in the scene
+        scoreCountingScript = FindObjectOfType<ScoreCountingScript>();
+    }
 
     // Funkcja do dodawania zdrowia
     public void AddHealth(int amount)
@@ -34,6 +43,7 @@ public class HealthUniversal : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject); // Zniszczenie obiektu
+            scoreCountingScript.points += deathPoints;
+            Destroy(gameObject); // Zniszczenie obiektu
     }
 }

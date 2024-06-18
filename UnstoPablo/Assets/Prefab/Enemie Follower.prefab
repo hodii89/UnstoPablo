@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  deathPoints: 10
 --- !u!114 &1993883994097503805
 MonoBehaviour:
   m_ObjectHideFlags: 0
