@@ -10,6 +10,7 @@ public class ScoreCountingScript : MonoBehaviour
     public int points;
 
     public TextMeshProUGUI pointsText; // Referencja do komponentu TextMeshPro
+    public TextMeshProUGUI pointsTextRestart; // Referencja do komponentu TextMeshPro
     public GameObject npcIconPrefab; // Prefab ikony NPC
     public Transform iconContainer; // Kontener dla ikon NPC
     public Vector2 iconOffset; // Offset miêdzy ikonami NPC
@@ -19,6 +20,7 @@ public class ScoreCountingScript : MonoBehaviour
         NpcsStart = GameObject.FindGameObjectsWithTag("Npc").Length;
         points = 0;
         UpdateNpcIcons();
+        pointsTextRestart.enabled = false;
 
         // Przyk³ad przypisania w inspektorze: pointsText = GetComponent<TextMeshProUGUI>();
     }
@@ -38,10 +40,14 @@ public class ScoreCountingScript : MonoBehaviour
 
         // Aktualizacja tekstu w TextMeshPro
         pointsText.text = "Points: " + points.ToString();
+        pointsTextRestart.text = "Points: " + points.ToString();
     }
 
     private void DeactivateAllScripts()
     {
+        pointsText.enabled = false;
+        pointsTextRestart.enabled = true;
+
         MonoBehaviour[] allScripts = FindObjectsOfType<MonoBehaviour>();
 
         foreach (MonoBehaviour script in allScripts)
