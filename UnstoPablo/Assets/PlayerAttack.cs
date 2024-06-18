@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
             HealthUniversal enemyHealth = collision.gameObject.GetComponent<HealthUniversal>();
 
             // Sprawdzenie, czy obiekt posiada komponent UniversalHealth
-            if (enemyHealth != null)
+            if (enemyHealth != null || collision.gameObject != null)
             {
                 // Zadanie obrażeń obiektowi
                 enemyHealth.SubtractHealth(contactDamage);
