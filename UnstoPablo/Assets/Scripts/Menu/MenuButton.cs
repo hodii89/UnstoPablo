@@ -20,20 +20,16 @@ public class MenuButton : MonoBehaviour
 
     public void MenuClick()
     {
-        // SprawdŸ, czy mamy komponent AudioSource na tym obiekcie
+        // Sprawdï¿½, czy mamy komponent AudioSource na tym obiekcie
         if (audioSource != null && ClickingSound != null)
         {
-            // Odtwórz dŸwiêk klikniêcia przez audioSource
+            // Odtwï¿½rz dï¿½wiï¿½k klikniï¿½cia przez audioSource
             audioSource.PlayOneShot(ClickingSound);
         }
-
-        // Wywo³aj metodê DelayedSceneLoad po 0.3 sekundy
-        Invoke("DelayedSceneLoad", 0.3f);
-    }
-
-    private void DelayedSceneLoad()
-    {
-        // Za³aduj nastêpn¹ scenê
+         Debug.Log("scena z przed zaÅ‚adowana");
+        // Wywoï¿½aj metodï¿½ DelayedSceneLoad po 0.3 sekundy
         SceneManager.LoadScene(0);
     }
+
+
 }

@@ -3,10 +3,10 @@ using UnityEngine.AI;
 
 public class EnemyFollowingBullet : MonoBehaviour
 {
-    public string targetTag = "Player"; // Tag obiektu, za którym ma pod¹¿aæ
-    public float speed = 5f; // Prêdkoœæ poruszania siê
+    public string targetTag = "Player"; // Tag obiektu, za ktï¿½rym ma podï¿½ï¿½aï¿½
+    public float speed = 5f; // Prï¿½dkoï¿½ï¿½ poruszania siï¿½
     public bool doesDistanceMatter;
-    public float stoppingDistance = 1f; // Dystans, na jakim obiekt siê zatrzymuje
+    public float stoppingDistance = 1f; // Dystans, na jakim obiekt siï¿½ zatrzymuje
     public bool doesTouchingMatter;
     public bool isFollowing;
     public bool isReachingPermanent;
@@ -15,15 +15,15 @@ public class EnemyFollowingBullet : MonoBehaviour
     private bool didTouched;
 
     public enum ReactionMode { Stop, AutoDestruction }
-    public ReactionMode reactionMode = ReactionMode.Stop; // Tryb reakcji po osi¹gniêciu stoppingDistance
+    public ReactionMode reactionMode = ReactionMode.Stop; // Tryb reakcji po osiï¿½gniï¿½ciu stoppingDistance
 
     private Transform target; // Transform celu
     private Rigidbody rb; // Rigidbody tego obiektu
-    private Vector3 moveDirection; // Kierunek poruszania siê
+    private Vector3 moveDirection; // Kierunek poruszania siï¿½
 
     private AudioSource audioSource;
 
-    // Zmienna do przechowywania klipu dŸwiêkowego œmierci
+    // Zmienna do przechowywania klipu dï¿½wiï¿½kowego ï¿½mierci
     public AudioClip shootingSound;
 
     public void Awake()
@@ -32,17 +32,17 @@ public class EnemyFollowingBullet : MonoBehaviour
     }
     void Start()
     {
-        // Przypisz komponent AudioSource znajduj¹cy siê na tym samym obiekcie
+        // Przypisz komponent AudioSource znajdujï¿½cy siï¿½ na tym samym obiekcie
         audioSource = GetComponent<AudioSource>();
 
-        // SprawdŸ, czy mamy komponent AudioSource na tym obiekcie
+        // Sprawdï¿½, czy mamy komponent AudioSource na tym obiekcie
         if (audioSource != null && shootingSound != null)
         {
-            // Odtwórz dŸwiêk œmierci przez audioSource
+            // Odtwï¿½rz dï¿½wiï¿½k ï¿½mierci przez audioSource
             audioSource.PlayOneShot(shootingSound);
         }
 
-        FindTarget(); // ZnajdŸ obiekt z okreœlonym tagiem
+        FindTarget(); // Znajdï¿½ obiekt z okreï¿½lonym tagiem
         CalculateMoveDirection();
 
         // Pobierz komponent Rigidbody
@@ -57,7 +57,7 @@ public class EnemyFollowingBullet : MonoBehaviour
     {
         if (isFollowing)
         {
-            // Oblicz kierunek do celu na bie¿¹co
+            // Oblicz kierunek do celu na bieï¿½ï¿½co
             CalculateMoveDirection();
         }
         if (target != null)
@@ -70,7 +70,7 @@ public class EnemyFollowingBullet : MonoBehaviour
                 if (isReachingPermanent == false && didReachedTarget)
                 {
                     didReachedTarget = false;
-                    FindTarget(); // ZnajdŸ obiekt z okreœlonym tagiem
+                    FindTarget(); // Znajdï¿½ obiekt z okreï¿½lonym tagiem
                     CalculateMoveDirection();
                 }
                 else if ((distance <= stoppingDistance && doesDistanceMatter) || (didTouched && doesTouchingMatter))
@@ -98,7 +98,7 @@ public class EnemyFollowingBullet : MonoBehaviour
         {
             if (isFollowing)
             {
-                FindTarget(); // ZnajdŸ obiekt z okreœlonym tagiem
+                FindTarget(); // Znajdï¿½ obiekt z okreï¿½lonym tagiem
                 CalculateMoveDirection();
             }
         }
@@ -111,7 +111,7 @@ public class EnemyFollowingBullet : MonoBehaviour
         switch (reactionMode)
         {
             case ReactionMode.Stop:
-                // Nic nie rób, obiekt siê zatrzymuje
+                // Nic nie rï¿½b, obiekt siï¿½ zatrzymuje
                 break;
 
             case ReactionMode.AutoDestruction:
@@ -146,7 +146,7 @@ public class EnemyFollowingBullet : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Nie znaleziono obiektów z tagiem: " + targetTag);
+           // Debug.LogError("Did not find an object with tag: " + targetTag);
             Destroy(gameObject);
         }
     }

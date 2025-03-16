@@ -27,7 +27,6 @@ public class UniversalAttack : MonoBehaviour
         if (collision.collider.CompareTag(victimTag) && !didTouch)
         {
             HealthUniversal enemyHealth = collision.collider.GetComponent<HealthUniversal>();
-            Debug.Log("enemy hit");
 
             if (enemyHealth != null)
             {
@@ -47,7 +46,7 @@ public class UniversalAttack : MonoBehaviour
 
     IEnumerator CyclicDamage(HealthUniversal enemyHealth)
     {
-        while (didTouch)
+        while (didTouch && enemyHealth != null)
         {
             enemyHealth.SubtractHealth(cyclicDamage);
             yield return new WaitForSeconds(cyclicCooldown);

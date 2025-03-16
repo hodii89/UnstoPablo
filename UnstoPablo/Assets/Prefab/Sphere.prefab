@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: -5606985146820476666}
   - component: {fileID: -2296219671032193900}
   - component: {fileID: -4276973485794670347}
+  - component: {fileID: -5333747748673775339}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Enemie
@@ -330,3 +331,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5333747748673775339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976445657496942548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901db14eda3d896d9a947889caa75ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
